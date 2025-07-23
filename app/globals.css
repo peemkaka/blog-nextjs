@@ -3,13 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --primary: #EE2B69;
+  --primary-100: #FFE8F0;
+  --secondary: #FBE843;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +18,22 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif var(--font-work-sans);
+}
+
+/* Custom utility classes */
+.text-primary {
+  color: var(--primary);
+}
+
+.text-primary-100 {
+  color: var(--primary-100);
+}
+
+.hover\:text-primary:hover {
+  color: var(--primary);
+}
+
+.bg-primary {
+  background-color: var(--primary);
 }
