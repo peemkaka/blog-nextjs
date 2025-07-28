@@ -9,11 +9,19 @@ import { Author, Startup } from '@/sanity/types';
 export type StartupCardType = Omit<Startup, "author"> & { author?: Author }
 
 function StartupCard({ post }: { post: StartupCardType }) {
-    const { _createdAt, title, description, category, image, views, author } = post;
+    const { 
+        _createdAt, 
+        title = "Untitled", 
+        description = "No description available", 
+        category = "General", 
+        image = "https://placehold.co/300x200", 
+        views = 0, 
+        author 
+    } = post;
+    
     return (
         <li className="startup-card group">
             <div className='flex-between'>
-
                 <p className='startup_card_date'>
                     {formatDate(_createdAt)}
                 </p>
@@ -26,7 +34,7 @@ function StartupCard({ post }: { post: StartupCardType }) {
                 <div className='flex-1'>
                     <Link href={`/user/${author?._id}`}>
                         <p className='text-16-medium line-clamp-1'>
-                            {author?.name}
+                            {author?.name || "Anonymous"}
                         </p>
                     </Link>
                     <Link href={`/startup/${post._id}`}>
@@ -37,11 +45,11 @@ function StartupCard({ post }: { post: StartupCardType }) {
                 </div>
                 <Link href={`user/${author?._id}`}>
                     <Image
-                        src='https://placehold.co/48x48'
-                        alt='placeholder'
+                        src={author?.image || 'https://placehold.co/48x48'}
+                        alt={author?.name || 'User avatar'}
                         width={48}
                         height={48}
-                        className='rounded-full'
+                        className='rounded-full h-[48px] w-[48px] object-cover'
                     />
                 </Link>
             </div>
